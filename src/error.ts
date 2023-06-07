@@ -13,4 +13,10 @@ class NotFound extends AppError {
   }
 }
 
-export { AppError, NotFound };
+class AlreadyExists extends AppError {
+  constructor(message: string) {
+    super(message, 409);
+  }
+}
+
+export { AppError, NotFound, AlreadyExists };
