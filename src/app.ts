@@ -10,6 +10,6 @@ app.use(express.json());
 app.use('/developers', developersRoutes);
 app.use('/projects', projectsRoutes);
 
-app.use(handleErrorMiddleware); //Deve ser o último dentro do app
+app.use(handleErrorMiddleware);
 
 export default app;

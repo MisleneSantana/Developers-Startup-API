@@ -4,7 +4,11 @@ import { client } from '../database/database';
 import { IDeveloper } from '../interfaces/developers.interfaces';
 import { AlreadyExists } from '../error';
 
-export const verifyEmailExistsMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+export const verifyEmailExistsMiddleware = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<Response | void> => {
   const { email } = req.body;
 
   const queryResult: TDeveloperResult = await client.query(

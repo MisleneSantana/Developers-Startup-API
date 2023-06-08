@@ -1,7 +1,6 @@
 import { QueryConfig, QueryResult } from 'pg';
 import { IDeveloper } from '../../interfaces/developers.interfaces';
 import { client } from '../../database/database';
-import { TJoinDevInfos } from '../../interfaces/developerInfos.interfaces';
 
 export const readDeveloperService = async (developerId: string): Promise<IDeveloper> => {
   const queryString: string = `
