@@ -2,15 +2,29 @@ import { Router } from 'express';
 import {
   createDeveloperController,
   createDeveloperInfosController,
+  deleteDeveloperController,
   readDeveloperController,
+  updateDeveloperController,
 } from '../controllers/developers.controllers';
-import { verifyEmailExists } from '../middlewares/verifyEmailExists';
+import { verifyEmailExistsMiddleware } from '../middlewares/verifyEmailExists.middlewares';
+import { verifyDeveloperIdExistsMiddleware } from '../middlewares/verifyDeveloperIdExists.middlewares';
+import { verifyPreferredOSMiddleware } from '../middlewares/verifyPreferredOS.middlewares';
 
 export const developersRoutes: Router = Router();
 
-developersRoutes.post('', verifyEmailExists, createDeveloperController);
-developersRoutes.get('/:id', readDeveloperController);
-// developersRoutes.patch('/:id');
-// developersRoutes.delete('/:id');
+developersRoutes.post('', verifyEmailExistsMiddleware, createDeveloperController);
+developersRoutes.get('/:id', verifyDeveloperIdExistsMiddleware, readDeveloperController);
+developersRoutes.patch(
+  '/:id',
+  verifyDeveloperIdExistsMiddleware,
+  verifyEmailExistsMiddleware,
+  updateDeveloperController
+);
+developersRoutes.delete('/:id', verifyDeveloperIdExistsMiddleware, deleteDeveloperController);
 
-developersRoutes.post('/:id/infos', createDeveloperInfosController);
+developersRoutes.post(
+  '/:id/infos',
+  verifyPreferredOSMiddleware,
+  verifyDeveloperIdExistsMiddleware,
+  createDeveloperInfosController
+);

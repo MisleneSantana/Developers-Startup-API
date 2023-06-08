@@ -1,13 +1,15 @@
 import 'express-async-errors';
 import express, { Application } from 'express';
-import handleError from './middlewares/handleErrors.middleware';
+import { handleErrorMiddleware } from './middlewares/handleErrors.middlewares';
 import { developersRoutes } from './routers/developers.routers';
+import { projectsRoutes } from './routers/projects.routers';
 
 const app: Application = express();
 app.use(express.json());
 
 app.use('/developers', developersRoutes);
+app.use('/projects', projectsRoutes);
 
-app.use(handleError); //Deve ser o último dentro do app
+app.use(handleErrorMiddleware); //Deve ser o último dentro do app
 
 export default app;

@@ -4,8 +4,8 @@ import { QueryResult } from 'pg';
 import { client } from '../../database/database';
 
 export const createDeveloperService = async (developerData: TDeveloperRequest): Promise<IDeveloper> => {
-  const keys: Array<string> = Object.keys(developerData);
-  const values: Array<string> = Object.values(developerData);
+  const keys: string[] = Object.keys(developerData);
+  const values: string[] = Object.values(developerData);
 
   const formatString = format(
     `

@@ -1,4 +1,4 @@
-class AppError extends Error {
+export class AppError extends Error {
   statusCode: number;
 
   constructor(message: string, statusCode: number = 400) {
@@ -7,16 +7,14 @@ class AppError extends Error {
   }
 }
 
-class NotFound extends AppError {
+export class NotFound extends AppError {
   constructor(message: string) {
     super(message, 404);
   }
 }
 
-class AlreadyExists extends AppError {
+export class AlreadyExists extends AppError {
   constructor(message: string) {
     super(message, 409);
   }
 }
-
-export { AppError, NotFound, AlreadyExists };
