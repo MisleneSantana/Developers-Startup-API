@@ -9,7 +9,6 @@ export const verifyIdExistsInBodyExistsMiddleware = async (
   next: NextFunction
 ): Promise<Response | void> => {
   const { developerId } = req.body;
-  console.log(developerId);
 
   const queryResult: TProjectResult = await client.query(
     `
@@ -17,8 +16,6 @@ export const verifyIdExistsInBodyExistsMiddleware = async (
   `,
     [developerId]
   );
-
-  console.log(queryResult);
 
   const developerIdExistsInBody: IProject = queryResult.rows[0];
 
