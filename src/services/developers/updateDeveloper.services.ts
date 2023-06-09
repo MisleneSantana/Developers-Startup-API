@@ -1,9 +1,9 @@
-import { IDeveloper, TDeveloperRequest, TDeveloperResult } from '../../interfaces/developers.interfaces';
+import { IDeveloper, TDeveloperResult, TDeveloperUpdate } from '../../interfaces/developers.interfaces';
 import format from 'pg-format';
 import { client } from '../../database/database';
 
 export const updateDeveloperService = async (
-  developerData: TDeveloperRequest,
+  developerData: TDeveloperUpdate,
   developerId: string
 ): Promise<IDeveloper> => {
   const keys: string[] = Object.keys(developerData);
