@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { TDeveloperRequest } from '../interfaces/developers.interfaces';
+import { IDeveloper, TDeveloperRequest } from '../interfaces/developers.interfaces';
 import { createDeveloperService } from '../services/developers/createDeveloper.services';
 import { readDeveloperService } from '../services/developers/readDeveloper.services';
 import { TDeveloperInfosRequest } from '../interfaces/developerInfos.interfaces';
@@ -10,7 +10,7 @@ import { deleteDeveloperService } from '../services/developers/deleteDeveloper.s
 export const createDeveloperController = async (req: Request, res: Response): Promise<Response> => {
   const developerData: TDeveloperRequest = req.body;
 
-  const newDeveloper = await createDeveloperService(developerData);
+  const newDeveloper: IDeveloper = await createDeveloperService(developerData);
 
   return res.status(201).json(newDeveloper);
 };
