@@ -4,12 +4,12 @@ import { client } from '../../database/database';
 
 export const updateDeveloperService = async (
   developerData: TDeveloperRequest,
-  developerId: number
+  developerId: string
 ): Promise<IDeveloper> => {
   const keys: string[] = Object.keys(developerData);
   const values: string[] = Object.values(developerData);
 
-  const formatString: string = format(
+  const queryFormatString: string = format(
     `
    UPDATE developers 
     SET (%I) = ROW (%L) 
@@ -20,7 +20,7 @@ export const updateDeveloperService = async (
     values
   );
 
-  const queryResult: TDeveloperResult = await client.query(formatString, [developerId]);
+  const queryResult: TDeveloperResult = await client.query(queryFormatString, [developerId]);
 
   return queryResult.rows[0];
 };

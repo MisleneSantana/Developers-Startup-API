@@ -27,7 +27,7 @@ export const updateDeveloperController = async (req: Request, res: Response): Pr
   const developerData: TDeveloperRequest = req.body;
   const developerId: string = req.params.id;
 
-  const updateDeveloperData = await updateDeveloperService(developerData, Number(developerId));
+  const updateDeveloperData = await updateDeveloperService(developerData, developerId);
 
   return res.status(200).json(updateDeveloperData);
 };
